@@ -6,7 +6,7 @@
                     <div class="card-header">Online Examination <span class="float-right"> {{ questionIndex }}/{{ questions.length }} </span> </div>
 
                     <div class="card-body">
-                        <span class="float-right" style="color:red;">{{ time }}</span>
+                        <span v-show="questionIndex <= questions.length-1" class="float-right" style="color:red;">{{ time }}</span>
                         <div v-for="(question, index) in questions">
                             <div v-show="index === questionIndex">
                                 {{ question.question }}
@@ -28,11 +28,17 @@
                         <div v-show="questionIndex != questions.length">
                             <button v-if="questionIndex > 0" class="btn btn-success" @click="prev()">PREV</button>
                             <button v-if="questionIndex < questions.length-1" class="btn btn-success float-right" @click="next(); postUserChoice()">NEXT</button>
+                            <button v-if="questionIndex == questions.length-1" class="btn btn-success float-right" @click="next(); postUserChoice()">Finish</button>
                         </div>
                         <div v-show="questionIndex === questions.length">
                             <p>
-                                <center>You Got: {{ result() }}/{{ questions.length }}</center>
+                                <center>
+                                    You Got: {{ result() }}/{{ questions.length }}
+                                </center>
                             </p>
+                            <center>
+                                <button class="btn btn-primary" @click="examfinish()">Return to MainMenu</button>
+                            </center>
                         </div>
 
                     </div>
@@ -81,6 +87,9 @@
             choices(question, answer){
                 this.currentAnswer = answer,
                 this.currentQuestion = question
+            },
+            examfinish(){
+                window.location.href = "/";
             },
             result(){
                 return this.userResponses.filter((val) => {

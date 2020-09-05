@@ -4,11 +4,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-                <center><h2>Your Result</h2></center>
+                <center>
+                    <h2>Your Result <a href="/home" class="float-right btn btn-secondary">BACK</a></h2>
+                </center>
             <div class="card">
                 @foreach($results as $key => $result)
                 <div class="card-header">
-                    {{ $key+1 }} {{ $result->question->quiz->name }}
+                    {{ $key+1 }}. {{ $result->question->quiz->name }}
                 </div>
 
                 <div class="card-body">

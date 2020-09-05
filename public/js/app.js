@@ -1985,6 +1985,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['quizid', 'quizQuestions', 'hasQuizPlayed', 'times'],
   data: function data() {
@@ -2025,6 +2031,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     choices: function choices(question, answer) {
       this.currentAnswer = answer, this.currentQuestion = question;
+    },
+    examfinish: function examfinish() {
+      window.location.href = "/";
     },
     result: function result() {
       return this.userResponses.filter(function (val) {
@@ -58891,7 +58900,18 @@ var render = function() {
             [
               _c(
                 "span",
-                { staticClass: "float-right", staticStyle: { color: "red" } },
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.questionIndex <= _vm.questions.length - 1,
+                      expression: "questionIndex <= questions.length-1"
+                    }
+                  ],
+                  staticClass: "float-right",
+                  staticStyle: { color: "red" }
+                },
                 [_vm._v(_vm._s(_vm.time))]
               ),
               _vm._v(" "),
@@ -59014,6 +59034,22 @@ var render = function() {
                         },
                         [_vm._v("NEXT")]
                       )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.questionIndex == _vm.questions.length - 1
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success float-right",
+                          on: {
+                            click: function($event) {
+                              _vm.next()
+                              _vm.postUserChoice()
+                            }
+                          }
+                        },
+                        [_vm._v("Finish")]
+                      )
                     : _vm._e()
                 ]
               ),
@@ -59036,16 +59072,33 @@ var render = function() {
                     [
                       _c("center", [
                         _vm._v(
-                          "You Got: " +
+                          "\n                                You Got: " +
                             _vm._s(_vm.result()) +
                             "/" +
-                            _vm._s(_vm.questions.length)
+                            _vm._s(_vm.questions.length) +
+                            "\n                            "
                         )
                       ])
                     ],
                     1
-                  )
-                ]
+                  ),
+                  _vm._v(" "),
+                  _c("center", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: {
+                          click: function($event) {
+                            return _vm.examfinish()
+                          }
+                        }
+                      },
+                      [_vm._v("Return to MainMenu")]
+                    )
+                  ])
+                ],
+                1
               )
             ],
             2
