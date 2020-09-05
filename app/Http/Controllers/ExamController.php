@@ -113,7 +113,7 @@ class ExamController extends Controller
         }
 
         $userCorrectAnswer = Answer::whereIn('id', $ans)->where('is_correct', 1)->count();
-        $userWrongAnswer = $totalQuestion - $attemptQuestion;
+        $userWrongAnswer = $totalQuestion - $userCorrectAnswer;
         if($attemptQuestion)
         {
             $percentage = ($userCorrectAnswer/$totalQuestion)*100;
