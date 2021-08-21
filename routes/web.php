@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\QuizController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +17,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/adminpage', function () {
+    return view('admin.index');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('quiz', QuizController::class);
+Route::resource('question', QuestionController::class);
+Route::resource('user', UserController::class);
+Route::get('quiz/{id}/question', [QuizController::class, 'question'])->name('quiz.question');
