@@ -35,19 +35,21 @@
                                 </a>
                             </li>
                         </ul>
+                        <ul class="widget widget-menu unstyled">
+                            <li><a href="{{ route('assign.userexam') }}"><i class="menu-icon icon-inbox"></i>Assign Exam
+                                </a>
+                            </li>
+                            <li><a href="{{ route('view.exam') }}"><i class="menu-icon icon-book"></i>View User Exam
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="widget widget-menu unstyled">
+                            <li><a href="{{ route('result') }}"><i class="menu-icon icon-inbox"></i>View Result
+                                </a>
+                            </li>
+                        </ul>
                         <!--/.widget-nav-->
                         <ul class="widget widget-menu unstyled">
-                            <li><a class="collapsed" data-toggle="collapse" href="#togglePages"><i
-                                        class="menu-icon icon-cog">
-                                    </i><i class="icon-chevron-down pull-right"></i><i
-                                        class="icon-chevron-up pull-right">
-                                    </i>More Pages </a>
-                                <ul id="togglePages" class="collapse unstyled">
-                                    <li><a href="other-login.html"><i class="icon-inbox"></i>Login </a></li>
-                                    <li><a href="other-user-profile.html"><i class="icon-inbox"></i>Profile </a></li>
-                                    <li><a href="other-user-listing.html"><i class="icon-inbox"></i>All Users </a></li>
-                                </ul>
-                            </li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     <i class="menu-icon icon-signout"></i>{{ __('Logout') }}
