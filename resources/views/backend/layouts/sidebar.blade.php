@@ -4,7 +4,7 @@
                 <div class="span3">
                     <div class="sidebar">
                         <ul class="widget widget-menu unstyled">
-                            <li class="active"><a href="/adminpage"><i class="menu-icon icon-dashboard"></i>Dashboard
+                            <li class="active"><a href="/"><i class="menu-icon icon-dashboard"></i>Dashboard
                                 </a></li>
                         </ul>
                         <!--/.widget-nav-->
@@ -48,7 +48,15 @@
                                     <li><a href="other-user-listing.html"><i class="icon-inbox"></i>All Users </a></li>
                                 </ul>
                             </li>
-                            <li><a href="#"><i class="menu-icon icon-signout"></i>Logout </a></li>
+                            <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    <i class="menu-icon icon-signout"></i>{{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </li>
                         </ul>
                     </div>
                     <!--/.sidebar-->
