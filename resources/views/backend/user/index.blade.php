@@ -5,13 +5,16 @@
 @section('content')
 
 <div class="span9">
+    @if(Session::has('message'))
+    <div class="alert alert-success">
+        {{ Session::get('message') }}
+    </div>
+    @elseif((Session::has('error')))
+    <div class="alert alert-danger">
+        {{ Session::get('error') }}
+    </div>
+    @endif
     <div class="content">
-
-        @if(Session::has('message'))
-        <div class="alert alert-success">
-            {{ Session::get('message') }}
-        </div>
-        @endif
 
         <div class="module">
             <div class="module-head">

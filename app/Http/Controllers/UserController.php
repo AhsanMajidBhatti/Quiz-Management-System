@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -111,6 +112,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        if (Auth::user()->is_admin == 1) {
+            return redirect()->back()->with('error', 'You cannot delete yourself');
+        }
         $user = User::find($id)->delete();
         return redirect()->route('user.index')->with('message', 'User Deleted Successfully');
     }
